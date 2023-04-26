@@ -16,16 +16,18 @@ toggleBtn.addEventListener('click', () => {
 })
 
 
+
+
 // Home Page Features
 const splitPathHome = navLinks[0].querySelector('a').href.split('/')
 const homePath = splitPathHome[splitPathHome.length - 1]
 
 if (pagePath == homePath) {
-
+    
     const leftArr = document.querySelector('.btn.left')
     const rightArr = document.querySelector('.btn.right')
-
-
+    
+    
     leftArr.addEventListener('click', () => {moveSlides(-1, slides, slidesParent)})
     rightArr.addEventListener('click', () => {moveSlides(1, slides, slidesParent)})
     console.log(leftArr)
@@ -49,12 +51,12 @@ if (pagePath == menuPath) {
             sec.style.opacity = '1'
         }
     })
-
-
+    
+    
     menuItems.forEach((item, ind) => {
-
+        
         item.addEventListener('click', () => {
-
+            
             menuCards.forEach((sec, i) => {
                 if (ind != i) {
                     sec.style.transform = 'translateX(-100%)'
@@ -68,7 +70,7 @@ if (pagePath == menuPath) {
             }
         })
     })
-
+    
 
     console.log('Menu Path')
 }
@@ -84,6 +86,9 @@ let bannerIndex = 0
 let reviewIndex = 0
 
 
+const firstSlideParagraph = slides[bannerIndex].querySelector("p")
+firstSlideParagraph.style.transform = "translateY(0)"
+firstSlideParagraph.style.opacity = "1"
 
 window.onload = () => {
     reviews.forEach(el => {
@@ -104,6 +109,20 @@ function moveSlides(interval, list, parent) {
     if (bannerIndex > list.length - 1) {
         bannerIndex = 0
     }
+
+    list.forEach((slide, i) => {
+        const paragraph = slide.querySelector("p")
+        if (i !== bannerIndex) {
+            paragraph.style.transform = "translateY(200%)"
+            paragraph.style.opacity = "0"
+        }
+    })
+
+    const par = list[bannerIndex].querySelector("p")
+    par.style.transform = "translateY(0)"
+    par.style.opacity = "1"
+
+
     
     console.log(list)
     console.log(bannerIndex)
